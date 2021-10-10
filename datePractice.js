@@ -10,16 +10,8 @@ console.log(formatDate(new Date('1900/1/4'))); // => "1900-01-04"
 
 // 2. 요일 구하기
 const getDay = date => {
-  const dayNames = [
-    '일요일',
-    '월요일',
-    '화요일',
-    '수요일',
-    '목요일',
-    '금요일',
-    '토요일'
-  ];
-  return dayNames[new Date(date).getDay()];
+  const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+  return dayNames[new Date(date).getDay()] + '요일';
 };
 console.log(getDay('2021-07-24')); // => '토요일'
 console.log(getDay('2021-07-25')); // => '일요일'
@@ -47,12 +39,14 @@ console.log(getLastDayOfMonth(2021, 11)); // => 5
 
 // 6. 두 날짜 사이의 일수 구하기
 
-const diffDays = (date1, date2) => Math.abs(date1 - date2) / (1000 * 3600 * 24);
+const diffDays = (date1, date2) =>
+  Math.floor(Math.abs(date1 - date2) / (1000 * 3600 * 24));
 
 console.log(diffDays(new Date('2021/01/01'), new Date('2021/12/31'))); // => 364
 
 // 6. 2개의 Date 객체가 같은 년도/월/날짜를 가리키는지 확인하기
-const isEqualDate = (date1, date2) => date1.getTime() === date2.getTime();
+const isEqualDate = (date1, date2) =>
+  date1.toString().slice(0, 16) === date2.toString().slice(0, 16);
 
 console.log(isEqualDate(new Date('2021/07/24'), new Date('2021/07/24'))); // => true
 console.log(isEqualDate(new Date('2021/07/24'), new Date('2022/07/2'))); // => false
